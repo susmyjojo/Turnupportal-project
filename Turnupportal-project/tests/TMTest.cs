@@ -1,13 +1,6 @@
-﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
+using OpenQA.Selenium.Chrome;
 using Turnupportal_project.pages;
-using Newtonsoft.Json.Bson;
-using NUnit.Framework;
 using Turnupportal_project.utilities;
 
 namespace Turnupportal_project.tests
@@ -24,7 +17,7 @@ namespace Turnupportal_project.tests
             loginpagepageobj.Loginactions(driver, "hari", "123123");
 
         }
-        [Test]
+        [Test,Order(1), Description("This test create TM record valid details")]
         public void TestCreateTMRecord()
         {
             Homepage Homepageobj = new Homepage();
@@ -34,13 +27,13 @@ namespace Turnupportal_project.tests
             TimeMaterialpage Timematerialpageobj = new TimeMaterialpage();
             Timematerialpageobj.CreateTMRecord(driver);
         }
-        [Test]
+        [Test,Order(2), Description("This test edit TM record valid details")]
         public void TestEditTimeAndMaterialRecord()
         {
             TimeMaterialpage Timematerialpageobj = new TimeMaterialpage();
             Timematerialpageobj.UpdateTMRecord(driver);
         }
-        [Test]
+        [Test,Order(3), Description("This test delete TM record valid details")]
         public void TestDeleteTimeAndMaterialRecord()
         {
             TimeMaterialpage Timematerialpageobj = new TimeMaterialpage();

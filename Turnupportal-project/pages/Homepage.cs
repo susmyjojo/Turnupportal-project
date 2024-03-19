@@ -1,25 +1,34 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Linq.Expressions;
 using Turnupportal_project.utilities;
 
 namespace Turnupportal_project.pages
 {
     public class Homepage
     {
-        public  void NavigateToTMPage(IWebDriver driver)
+        public void NavigateToTMPage(IWebDriver driver)
         {
-            //create a new time and material module
-            //Navigate to time and material module (click on the admin drop down link)
+            try
+            {
+                //create a new time and material module
+                //Navigate to time and material module (click on the admin drop down link)
 
-            IWebElement Administrationdropdown = driver.FindElement(By.XPath("//*[contains(text(),'Administration')]"));
-            Administrationdropdown.Click();
+                IWebElement Administrationdropdown = driver.FindElement(By.XPath("//*[contains(text(),'Administration')]"));
+                Administrationdropdown.Click();
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible (By.XPath("//a[contains(text(),'Time & Materials')]"));
-            Waitutils.WaitToBeVisible(driver, "xpath", "//a[contains(text(),'Time & Materials')]", 3);
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible (By.XPath("//a[contains(text(),'Time & Materials')]"));
+                Waitutils.WaitToBeVisible(driver, "xpath", "//a[contains(text(),'Time & Materials')]", 3);
 
-            IWebElement Timeandmaterialoption = driver.FindElement(By.XPath("//a[contains(text(),'Time & Materials')]"));
-            Timeandmaterialoption.Click();
+                IWebElement Timeandmaterialoption = driver.FindElement(By.XPath("//a[contains(text(),'Time & Materials')]"));
+                Timeandmaterialoption.Click();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Turnup portal dashboard portal is not clickabel");
+            }
         }
 
         
@@ -41,7 +50,7 @@ namespace Turnupportal_project.pages
             }
 
             public void verifyLoggedIntoUser(IWebDriver driver)
-        {
+            {
             //check if the user logged in successfully
             IWebElement HelloHari = driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li/a"));
             if (HelloHari.Text == "Hellow Hari")
@@ -52,6 +61,6 @@ namespace Turnupportal_project.pages
             {
                 Console.WriteLine("User hasn't been logged successfully");
             }
-        }
+             }
     }
 }

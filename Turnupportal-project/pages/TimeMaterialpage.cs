@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using Turnupportal_project.utilities;
 
 namespace Turnupportal_project.pages
@@ -29,6 +30,7 @@ namespace Turnupportal_project.pages
             DescriptionTextbox.SendKeys("sample");
 
             //Enter the price
+           // Waitutils.WaitToBeClickable(driver, "XPath", "//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]", 1);
             IWebElement PriceTextBox = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
             PriceTextBox.SendKeys("sample");
 
@@ -44,11 +46,11 @@ namespace Turnupportal_project.pages
             IWebElement NewRecordCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
             if (NewRecordCode.Text == "sample")
             {
-                Console.WriteLine("New time/Material is added succesfully");
+                Assert.Pass("New time/Material is added succesfully");
             }
             else
             {
-                Console.WriteLine("New time/Material is not added succesfully");
+               Assert.Fail("New time/Material is not added succesfully");
             }
         }
 
